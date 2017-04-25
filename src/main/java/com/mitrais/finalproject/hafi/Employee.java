@@ -159,11 +159,12 @@ public class Employee {
 	public void setLocationId(Location locationId) {
 		this.locationId = locationId;
 	}
-	public Employee(String emp_fname, String emp_lname, String emp_gender, Date emp_dob,
+	public Employee(long emp_id, String emp_fname, String emp_lname, String emp_gender, Date emp_dob,
 			String emp_national, String emp_martial, String emp_phone, String emp_sub_div, String emp_status,
 			Date emp_susp_date, Date emp_hire_date, String emp_div, String emp_email, boolean emp_isactive,
 			String emp_photo, Location emp_location) {
 		super();
+		this.Id = emp_id;
 		this.firstName = emp_fname;
 		this.lastName = emp_lname;
 		this.gender = emp_gender;
