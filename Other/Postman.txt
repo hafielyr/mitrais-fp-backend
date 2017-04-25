@@ -1,0 +1,20 @@
+{
+"firstName":"Satriya",
+"lastName":"Mistiawan", 
+"gender":"Female", 
+"dob": "2012-01-01",
+"nationality":"Indonesian",
+"martial":"Married",
+"phone":"081334272304",
+"subDivision":"Java Bootcamp",
+"status":"Contract",
+"suspendDate": null,
+"hireDate":"2012-04-16",
+"division":"SE-AP",
+"email":"SatriyaWawan@mitrais.com",
+"isActive": true ,
+"photo": null, 
+"locationId":{
+	"id":1
+}
+}
