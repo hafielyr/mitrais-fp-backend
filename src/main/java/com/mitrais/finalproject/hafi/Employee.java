@@ -32,8 +32,8 @@ public class Employee {
 	private Date dob;
 	@Column(name="emp_national", nullable = false)
 	private String nationality;
-	@Column(name="emp_martial", nullable = false)
-	private String martial;
+	@Column(name="emp_marital", nullable = false)
+	private String marital;
 	@Column(name="emp_phone", nullable = false)
 	private String phone;
 	@Column(name="emp_sub_div", nullable = false)
@@ -47,6 +47,8 @@ public class Employee {
 	@Temporal(TemporalType.DATE)
 	private Date hireDate;
 	@Column(name="emp_div", nullable = false)
+	private String grade;
+	@Column(name="emp_grade", nullable = false)
 	private String division;
 	@Column(name="emp_email", nullable = false)
 	private String email;
@@ -93,11 +95,11 @@ public class Employee {
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
-	public String getMartial() {
-		return martial;
+	public String getMarital() {
+		return marital;
 	}
-	public void setMartial(String martial) {
-		this.martial = martial;
+	public void setMarital(String marital) {
+		this.marital = marital;
 	}
 	public String getPhone() {
 		return phone;
@@ -128,6 +130,12 @@ public class Employee {
 	}
 	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 	public String getDivision() {
 		return division;
@@ -170,7 +178,7 @@ public class Employee {
 		this.gender = emp_gender;
 		this.dob = emp_dob;
 		this.nationality = emp_national;
-		this.martial = emp_martial;
+		this.marital = emp_martial;
 		this.phone = emp_phone;
 		this.subDivision = emp_sub_div;
 		this.status = emp_status;

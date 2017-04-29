@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,13 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class EmployeeController {
-	private List<Employee> employee;
-	
 	@Autowired
 	EmployeeRepository er;
 	
 	public EmployeeController(){
-		employee=new ArrayList<Employee>();
+		new ArrayList<Employee>();
 		
 	}
 	@RequestMapping(value="/employees", method=RequestMethod.GET)
@@ -59,13 +58,35 @@ public class EmployeeController {
 	}
 	@RequestMapping(value="/employees/{id}", method=RequestMethod.PUT)
 	@ResponseBody
-	public void updateEmployee(@PathVariable long id){
+	public void updateEmployee(@PathVariable long id, @RequestBody Employee e){
 			if(er.findOne(id)!=null){
-			Employee e=er.findOne(id);
+			Employee em=er.findOne(id);
+			e.setId(em.getId());
 		    er.save(e);
 			}
 		    else{
 				throw new EmployeeNotFoundException();
 			}
+	}
+	@RequestMapping(value="/employees/sortasc", method=RequestMethod.GET)
+	@ResponseBody
+	public Iterable<Employee> sortByLastNameAscending(){
+		Sort.Order sorted;
+		sorted= new Sort.Order(Sort.Direction.ASC,"lastName").ignoreCase();
+		
+		return er.findAll(new Sort(sorted));
+	}
+	@RequestMapping(value="/employees/sortdesc", method=RequestMethod.GET)
+	@ResponseBody
+	public Iterable<Employee> sortByLastNameDescending(){
+		Sort.Order sorted;
+		sorted= new Sort.Order(Sort.Direction.DESC,"lastName").ignoreCase();
+		
+		return er.findAll(new Sort(sorted));
+	}
+	@RequestMapping(value="/employees/search", method=RequestMethod.GET)
+	@ResponseBody
+	public Iterable<Employee> search(@RequestParam String name){
+		return er.findByFirstNameContainingOrLastNameContainingAllIgnoreCase(name, name);
 	}
 }
