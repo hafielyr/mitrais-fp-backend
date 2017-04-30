@@ -86,7 +86,21 @@ public class EmployeeController {
 	}
 	@RequestMapping(value="/employees/search", method=RequestMethod.GET)
 	@ResponseBody
-	public Iterable<Employee> search(@RequestParam String name){
+	public Iterable<Employee> searchEmployees(@RequestParam String name){
 		return er.findByFirstNameContainingOrLastNameContainingAllIgnoreCase(name, name);
+	}
+	@RequestMapping(value="/employees/filter", method=RequestMethod.GET)
+	@ResponseBody
+	public Iterable<Employee> filterEmployees(@RequestParam String gender,@RequestParam String locationId){
+		if(gender!=null && locationId==null){
+			return er.findByGender(gender);
+		}
+		else if(gender==null && locationId!=null){
+			return er.findByLocationId(Long.parseLong(locationId));
+		}
+		else{
+			return er.findByLocationIdAndGender(gender, Long.parseLong(locationId));
+		}
+		
 	}
 }
