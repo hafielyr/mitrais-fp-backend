@@ -8,10 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name="t_employee")
@@ -54,8 +57,9 @@ public class Employee {
 	private String email;
 	@Column(name="emp_isactive", nullable = false)
 	private boolean isActive;
-	@Column(name="emp_photo")
-	private String photo;
+	@Lob
+	@Column(nullable=true)
+	private String emp_photo;
 	@ManyToOne
 	@JoinColumn(name="emp_location")
 	private Location locationId;
@@ -156,10 +160,10 @@ public class Employee {
 		this.isActive = isActive;
 	}
 	public String getPhoto() {
-		return photo;
+		return emp_photo;
 	}
 	public void setPhoto(String photo) {
-		this.photo = photo;
+		this.emp_photo = photo;
 	}
 	public Location getLocationId() {
 		return locationId;
@@ -187,7 +191,7 @@ public class Employee {
 		this.division = emp_div;
 		this.email = emp_email;
 		this.isActive = emp_isactive;
-		this.photo = emp_photo;
+		this.emp_photo = emp_photo;
 		this.locationId = emp_location;
 	}
 	public Employee(){}

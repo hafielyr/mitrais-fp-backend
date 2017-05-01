@@ -20,7 +20,7 @@ create table t_employee(
 	emp_div varchar(30) not null,
 	emp_email varchar(50) not null,
 	emp_isactive boolean not null,
-	emp_photo varchar(255),
+	emp_photo text,
 	emp_location int not null,
 	primary key (emp_id),
 	foreign key (emp_location) references t_location(loc_id)
