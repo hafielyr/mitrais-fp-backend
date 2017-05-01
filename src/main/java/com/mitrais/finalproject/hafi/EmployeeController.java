@@ -92,14 +92,14 @@ public class EmployeeController {
 	@RequestMapping(value="/employees/filter", method=RequestMethod.GET)
 	@ResponseBody
 	public Iterable<Employee> filterEmployees(@RequestParam String gender,@RequestParam String locationId){
-		if(gender!=null && locationId==null){
-			return er.findByGender(gender);
+		if(!gender.contains("null") && locationId.contains("null")){
+			return er.findByGender(gender.toLowerCase());
 		}
-		else if(gender==null && locationId!=null){
-			return er.findByLocationId(Long.parseLong(locationId));
+		else if(gender.contains("null") && !locationId.contains("null")){
+			return er.findByLocationId(Integer.parseInt(locationId));
 		}
 		else{
-			return er.findByLocationIdAndGender(gender, Long.parseLong(locationId));
+			return er.findByLocationIdAndGender(gender.toLowerCase(), Integer.parseInt(locationId));
 		}
 		
 	}
